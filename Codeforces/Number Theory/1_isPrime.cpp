@@ -1,30 +1,39 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// TC : O(n)
-bool isPrime(int x){
-
- if(x <= 1) return false;
-
-    int i = 2,cnt = 0;   
-
-    while(x % i != 0){
-     i++,cnt++;
-     if(i == x) break;
-    } 
-
-    if(cnt != 0) return true;
-    else return false;
+bool is_prime(int number){
+    if(number <= 1) return false;
+    bool flag = true;
+    for(int i = 2;i<number;i++){
+        if(number % i == 0){
+            flag = false; 
+            break; 
+        }
+    }
+    return flag;
 }
 
-//
+bool is_prime_optimal(int number){
+
+    if(number<=1) return false;
+
+    bool flag = true;
+    for(int i=2;i*i<=number;i++){
+        if(number % i == 0){
+              flag = false;
+              break;
+        }
+    }
+    return flag;
+}
 
 int main(){
 
-    int x;
-    cin>>x;
+    int number;
+    cin>>number;
 
-    int check = isPrime(x);
-    cout<<check;
+    int result = is_prime_optimal(number);
+    if(result) cout<<number<<" "<<"is prime";
+    else cout<<"Not a prime";
     return 0;
 }
